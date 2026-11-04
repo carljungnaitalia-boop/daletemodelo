@@ -412,11 +412,9 @@ function initOrbitalRing() {
       c.style.left = x + '%';
       c.style.top = y + '%';
 
-      // 3D Depth effect: chips passing behind (top of ellipse) become slightly smaller and softer
+      // Scale for subtle 3D depth, keeping 100% solid gold opacity
       const depthFactor = (Math.sin(rad) + 1) / 2; // 0 to 1
-      const scale = 0.88 + depthFactor * 0.18;
-      const opacity = 0.72 + depthFactor * 0.28;
-      c.style.opacity = opacity.toString();
+      const scale = 0.92 + depthFactor * 0.16;
       c.style.transform = `translate(-50%, -50%) scale(${scale})`;
       c.style.zIndex = y > 50 ? '7' : '4';
     });

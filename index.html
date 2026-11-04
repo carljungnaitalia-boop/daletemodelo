@@ -875,48 +875,29 @@
         function tick() {
           const isMobile = window.innerWidth <= 820;
           const r = c2.getBoundingClientRect();
-          let a = 0;
-          let p = 0;
+          const vh = window.innerHeight || 1;
+          const totalTrack = Math.max(1, r.height - vh);
+          const p = still ? 1 : cl(-r.top / totalTrack);
+          const a = cl(1 - r.top / vh);
 
-          if (isMobile) {
-            // No mobile: fluxo 100% natural da página (sem travar/fixar a tela e sem precisar rolar trilha extra)
-            stg.style.position = 'relative';
-            stg.style.top = 'auto';
+          if (r.top <= 0 && r.bottom >= vh) {
+            stg.style.position = 'fixed';
+            stg.style.top = '0px';
             stg.style.bottom = 'auto';
-            stg.style.left = 'auto';
+            stg.style.left = '0px';
             stg.style.width = '100%';
-
-            const cbNow = circ.getBoundingClientRect();
-            const vh = window.innerHeight || 1;
-            const startY = vh * 0.80;
-            const endY = vh * 0.24;
-            a = cl((vh * 1.05 - cbNow.top) / (vh * 0.25));
-            p = still ? 1 : cl((startY - cbNow.top) / Math.max(1, startY - endY));
+          } else if (r.bottom < vh) {
+            stg.style.position = 'absolute';
+            stg.style.top = 'auto';
+            stg.style.bottom = '0px';
+            stg.style.left = '0px';
+            stg.style.width = '100%';
           } else {
-            // No desktop: palco fixado durante a rolagem da seção
-            const vh = stg.offsetHeight || window.innerHeight;
-            a = cl(1 - r.top / window.innerHeight);
-            p = still ? 1 : cl(-r.top / Math.max(1, r.height - vh));
-
-            if (r.top <= 0 && r.bottom >= vh) {
-              stg.style.position = 'fixed';
-              stg.style.top = '0px';
-              stg.style.bottom = 'auto';
-              stg.style.left = '0px';
-              stg.style.width = '100%';
-            } else if (r.bottom < vh) {
-              stg.style.position = 'absolute';
-              stg.style.top = 'auto';
-              stg.style.bottom = '0px';
-              stg.style.left = '0px';
-              stg.style.width = '100%';
-            } else {
-              stg.style.position = 'sticky';
-              stg.style.top = '0px';
-              stg.style.bottom = 'auto';
-              stg.style.left = '0px';
-              stg.style.width = '100%';
-            }
+            stg.style.position = 'relative';
+            stg.style.top = '0px';
+            stg.style.bottom = 'auto';
+            stg.style.left = '0px';
+            stg.style.width = '100%';
           }
 
           const s = stg.getBoundingClientRect();
@@ -935,34 +916,36 @@
             fall.setAttribute('d', '');
             hl.setAttribute('rx', '0');
           } else {
+            // Estágio 1: Gota forma e incha na ponta (p: 0 a 0.14)
             if (p <= 0) {
               const k = ez(cl((a - 0.45) / 0.55));
               L = (8 + k * 97) * sc;
               bw = (8 + k * 18) * rSc;
               nw = (15 - k * 3) * rSc;
-            } else if (p < 0.1) {
-              const k = p / 0.1;
-              L = (105 + k * 30) * sc;
+            } else if (p < 0.14) {
+              const k = p / 0.14;
+              L = (105 + k * 32) * sc;
               bw = (26 + k * 6) * rSc;
-              nw = (12 - k * 9) * rSc;
+              nw = (12 - k * 8) * rSc;
             } else {
-              const k = ez(cl((p - 0.1) / 0.05));
+              const k = ez(cl((p - 0.14) / 0.08));
               L = (1 - k) * 40 * sc;
               bw = 7 * rSc;
               nw = (7 * (1 - k) + 2) * rSc;
             }
             hang.setAttribute('d', hangPath(ix, L, nw, bw));
 
+            // Estágio 2: Gota desce suavemente pelo espaço (p: 0.14 a 0.52 - percurso longo e visível)
             let fy = 0,
               fr = 0,
               fs = 1;
-            if (p >= 0.1 && p < 0.43) {
-              const k = cl((p - 0.1) / 0.3);
+            if (p >= 0.14 && p < 0.54) {
+              const k = cl((p - 0.14) / 0.38);
               const y0 = 104 * sc;
-              fy = y0 + (iy - y0) * k * k;
-              fr = 32 * rSc * (1 - 0.1 * k);
+              fy = y0 + (iy - y0) * (k * k * 0.75 + k * 0.25);
+              fr = 32 * rSc * (1 - 0.08 * k);
               fs = 1 + 0.55 * k;
-              if (p >= 0.4) fr *= 1 - (p - 0.4) / 0.03;
+              if (p >= 0.50) fr *= 1 - (p - 0.50) / 0.04;
             }
 
             if (fr > 0) {
@@ -977,13 +960,13 @@
             }
           }
 
-          // Ondas e respingo no impacto (p = 0.40)
+          // Estágio 3: Ondas e respingo no impacto com a pele (a partir de p = 0.50)
           rip.style.left = `${ix}px`;
           rip.style.top = `${iy}px`;
-          rip.style.setProperty('--k', still || p < 0.4 || p > 0.62 ? '0' : `${cl((p - 0.4) / 0.2)}`);
+          rip.style.setProperty('--k', still || p < 0.50 || p > 0.74 ? '0' : `${cl((p - 0.50) / 0.24)}`);
 
           SP.forEach((o) => {
-            const t = cl((p - 0.4) / 0.1);
+            const t = cl((p - 0.50) / 0.14);
             if (still || t <= 0 || t >= 1) {
               o.d.style.opacity = '0';
               return;
@@ -992,9 +975,9 @@
             o.d.style.transform = `translate(${ix + Math.cos(o.a) * o.v * t * 1.4}px, ${iy - Math.sin(o.a) * o.v * t * 1.5 + t * t * 70}px)`;
           });
 
-          // Transformação em círculo a partir do impacto
+          // Estágio 4: Transformação em círculo a partir do impacto (p: 0.50 a 0.95)
           const R = Math.hypot(cb.width, cb.height);
-          const rk = still ? 1 : ez(cl((p - 0.4) / 0.55));
+          const rk = still ? 1 : ez(cl((p - 0.50) / 0.45));
           yc.style.clipPath = `circle(${rk * R}px at ${IX * 100}% ${IY * 100}%)`;
 
           front.style.width = `${2 * rk * R}px`;
