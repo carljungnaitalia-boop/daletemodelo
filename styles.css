@@ -162,7 +162,7 @@ p.sub, .sec-sub {
   justify-content: center;
   gap: 10px;
   padding: 16px 38px;
-  border-radius: var(--r-pill);
+  border-radius: 0 !important;
   border: 1px solid var(--gold);
   color: var(--ink);
   font: 500 15px 'Jost', sans-serif;
@@ -214,6 +214,20 @@ p.sub, .sec-sub {
 .btn--white:hover {
   background: #F8F7F3;
   color: var(--graphite);
+}
+
+/* Borda quadrada para todos os botões e CTAs do site */
+button:not(.nav-toggle):not(.svc-drawer-close):not(.svc-slide-dot),
+.btn,
+.btn--sm,
+.btn--ghost,
+.btn--white,
+.nav-cta-btn,
+.gt-btn,
+.svc-ben-btn,
+.svc-subtab-btn,
+.opts button {
+  border-radius: 0 !important;
 }
 
 /* ==========================================================================
@@ -1162,7 +1176,7 @@ p.sub, .sec-sub {
   justify-content: space-between;
   width: 100%;
   padding: 12px 18px;
-  border-radius: var(--r-pill);
+  border-radius: 0 !important;
   border: 1px solid #C59B4E;
   background: linear-gradient(110deg, #F0DFAE 0%, #C9A25A 45%, #F7E8BC 65%, #B88A28 100%);
   background-size: 220% 100%;
@@ -1363,7 +1377,7 @@ p.sub, .sec-sub {
 .svc-subtab-btn {
   flex: 0 0 auto;
   padding: 8px 18px;
-  border-radius: var(--r-pill);
+  border-radius: 0 !important;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--ink-soft);
@@ -1695,8 +1709,8 @@ p.sub, .sec-sub {
   position: relative;
   justify-self: center;
   width: min(100%, 380px);
-  animation: sobrePhotoFloat 5s ease-in-out infinite;
-  will-change: transform;
+  animation: none !important;
+  will-change: auto;
 }
 
 @keyframes sobrePhotoFloat {
@@ -2534,7 +2548,7 @@ p.sub, .sec-sub {
 
 .opts button {
   padding: 10px 18px;
-  border-radius: var(--r-pill);
+  border-radius: 0 !important;
   border: 1.5px solid #C59B4E;
   background: linear-gradient(110deg, #F0DFAE 0%, #C9A25A 45%, #F7E8BC 65%, #B88A28 100%);
   background-size: 220% 100%;
@@ -3373,7 +3387,7 @@ input[type=range] {
 @keyframes gt-sheen { to { background-position: -300% 0; } }
 .gt-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 16px 38px; border-radius: 999px; border: 1px solid var(--gt-gold);
+  padding: 16px 38px; border-radius: 0 !important; border: 1px solid var(--gt-gold);
   color: var(--ink); font: 500 15px var(--gt-font-body); letter-spacing: 0.05em;
   text-decoration: none; cursor: pointer; white-space: nowrap; flex-shrink: 0;
   background: linear-gradient(110deg, #F0DFAE, #C9A25A 45%, #F0DFAE 60%, #C9A25A);
