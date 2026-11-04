@@ -3336,7 +3336,7 @@ input[type=range] {
   color: #FFFFFF;
   line-height: 1.7;
   font-weight: 300;
-  height: 380vh;
+  height: 145vh;
   position: relative;
   background-color: var(--bg-2) !important;
 }
@@ -3563,8 +3563,8 @@ input[type=range] {
 .gt-gold-divider {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #FBF8F2 0%, var(--bg-2) 100%);
-  padding: 24px 20px 14px;
+  background: var(--bg-2) !important;
+  padding: 12px 20px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3588,10 +3588,16 @@ input[type=range] {
   text-shadow: 0 0 10px rgba(249, 228, 152, 0.85);
 }
 
+/* Transição imediata da animação para a seção Sobre a Dra. Dálete */
+.sec-sobre {
+  padding-top: 24px !important;
+  padding-bottom: 80px !important;
+}
+
 @media (max-width: 820px) {
   /* Sessão da Gota Mobile: palco fixado com trilha de scroll suave para ver a gota cair com clareza */
   .gt-sec {
-    height: 280vh !important;
+    height: 120vh !important;
     background-color: var(--bg-2) !important;
   }
   .gt-stg {
@@ -3649,7 +3655,7 @@ input[type=range] {
     gap: 12px;
   }
   .sec-sobre {
-    padding-top: 22px !important;
+    padding-top: 14px !important;
   }
   .svc__pic {
     height: 290px !important;

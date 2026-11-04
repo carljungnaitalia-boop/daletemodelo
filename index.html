@@ -379,7 +379,7 @@
               </p>
               <div class="sobre-bio-divider" aria-hidden="true"></div>
               <p class="tecnico" id="sobreTecnico">
-                Sou especialista em Harmonização Orofacial com pós-graduação avançada em Anatomia Cirúrgica da Face e mais de 5 anos de dedicação exclusiva à estética e rejuvenescimento facial. Mantenho rigor técnico e científico constante em biossegurança, anatomia vascular e nos materiais de preenchimento reabsorvíveis de maior prestígio internacional.
+                Sou especialista em Harmonização Orofacial com mais de 5 anos de dedicação exclusiva à estética e rejuvenescimento facial. Mantenho rigor técnico e científico constante em biossegurança, anatomia vascular e nos materiais de preenchimento reabsorvíveis de maior prestígio internacional.
               </p>
               <blockquote class="sobre-quote">
                 <p id="sobreCitacao">“Harmonizar não é transformar você em outra pessoa — é devolver ao espelho a sua versão mais descansada, elegante e confiante.”</p>
@@ -756,7 +756,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <h3 id="footerName">Dra. Dálete Silveira</h3>
-          <p class="footer-reg" id="footerReg">CRO 14.892 • Especialista em Harmonização Facial</p>
+          <p class="footer-reg" id="footerReg">CRO/CE 14621 • Especialista em Harmonização Facial</p>
           <p class="footer-desc">
             Harmonização facial individualizada para realçar sua proporção e beleza natural com excelência clínica e conforto.
           </p>
@@ -916,36 +916,36 @@
             fall.setAttribute('d', '');
             hl.setAttribute('rx', '0');
           } else {
-            // Estágio 1: Gota forma e incha na ponta (p: 0 a 0.14)
+            // Estágio 1: Gota forma e incha na ponta (p: 0 a 0.05)
             if (p <= 0) {
-              const k = ez(cl((a - 0.45) / 0.55));
-              L = (8 + k * 97) * sc;
+              const k = ez(cl((a - 0.35) / 0.65));
+              L = (8 + k * 88) * sc;
               bw = (8 + k * 18) * rSc;
               nw = (15 - k * 3) * rSc;
-            } else if (p < 0.14) {
-              const k = p / 0.14;
-              L = (105 + k * 32) * sc;
-              bw = (26 + k * 6) * rSc;
-              nw = (12 - k * 8) * rSc;
+            } else if (p < 0.05) {
+              const k = p / 0.05;
+              L = (96 + k * 26) * sc;
+              bw = (26 + k * 4) * rSc;
+              nw = (12 - k * 9) * rSc;
             } else {
-              const k = ez(cl((p - 0.14) / 0.08));
-              L = (1 - k) * 40 * sc;
+              const k = ez(cl((p - 0.05) / 0.06));
+              L = (1 - k) * 36 * sc;
               bw = 7 * rSc;
               nw = (7 * (1 - k) + 2) * rSc;
             }
             hang.setAttribute('d', hangPath(ix, L, nw, bw));
 
-            // Estágio 2: Gota desce suavemente pelo espaço (p: 0.14 a 0.52 - percurso longo e visível)
+            // Estágio 2: Gota desce suavemente pelo espaço (p: 0.05 a 0.38 - tempo ritmado e preciso)
             let fy = 0,
               fr = 0,
               fs = 1;
-            if (p >= 0.14 && p < 0.54) {
-              const k = cl((p - 0.14) / 0.38);
-              const y0 = 104 * sc;
-              fy = y0 + (iy - y0) * (k * k * 0.75 + k * 0.25);
-              fr = 32 * rSc * (1 - 0.08 * k);
-              fs = 1 + 0.55 * k;
-              if (p >= 0.50) fr *= 1 - (p - 0.50) / 0.04;
+            if (p >= 0.05 && p < 0.40) {
+              const k = cl((p - 0.05) / 0.33);
+              const y0 = 96 * sc;
+              fy = y0 + (iy - y0) * (k * k * 0.72 + k * 0.28);
+              fr = 28 * rSc * (1 - 0.08 * k);
+              fs = 1 + 0.45 * k;
+              if (p >= 0.36) fr *= 1 - (p - 0.36) / 0.04;
             }
 
             if (fr > 0) {
@@ -960,13 +960,13 @@
             }
           }
 
-          // Estágio 3: Ondas e respingo no impacto com a pele (a partir de p = 0.50)
+          // Estágio 3: Ondas e respingo no impacto com a pele (a partir de p = 0.36 a 0.60)
           rip.style.left = `${ix}px`;
           rip.style.top = `${iy}px`;
-          rip.style.setProperty('--k', still || p < 0.50 || p > 0.74 ? '0' : `${cl((p - 0.50) / 0.24)}`);
+          rip.style.setProperty('--k', still || p < 0.36 || p > 0.62 ? '0' : `${cl((p - 0.36) / 0.24)}`);
 
           SP.forEach((o) => {
-            const t = cl((p - 0.50) / 0.14);
+            const t = cl((p - 0.36) / 0.14);
             if (still || t <= 0 || t >= 1) {
               o.d.style.opacity = '0';
               return;
@@ -975,9 +975,9 @@
             o.d.style.transform = `translate(${ix + Math.cos(o.a) * o.v * t * 1.4}px, ${iy - Math.sin(o.a) * o.v * t * 1.5 + t * t * 70}px)`;
           });
 
-          // Estágio 4: Transformação em círculo a partir do impacto (p: 0.50 a 0.95)
+          // Estágio 4: Transformação em círculo a partir do impacto (p: 0.36 a 0.80)
           const R = Math.hypot(cb.width, cb.height);
-          const rk = still ? 1 : ez(cl((p - 0.50) / 0.45));
+          const rk = still ? 1 : ez(cl((p - 0.36) / 0.42));
           yc.style.clipPath = `circle(${rk * R}px at ${IX * 100}% ${IY * 100}%)`;
 
           front.style.width = `${2 * rk * R}px`;

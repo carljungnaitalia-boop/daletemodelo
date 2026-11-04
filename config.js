@@ -8,7 +8,7 @@ export const SITE = {
   doutora: {
     nome: 'Dra. Dálete Silveira',
     cidade: 'Sobral - CE',
-    registro: 'CRO 14.892',
+    registro: 'CRO/CE 14621',
     instagram: 'dradaletesilveira',
     instagramUrl: 'https://www.instagram.com/dradaletesilveira/',
     whatsapp: '5588996079291',
@@ -134,7 +134,7 @@ export const SITE = {
     titulo: 'Sua beleza é <span class="hero-gold-script">única.</span> O cuidado também.',
     subtitulo: 'Conheça a Dra. Dálete, especialista em harmonização facial.',
     emocional: 'Acredito que nenhum rosto precisa ser copiado. Cada traço conta uma história, e o meu trabalho é revelar o que já existe em você, com delicadeza e escuta. Quando uma paciente se olha no espelho e se reconhece, mais descansada, mais confiante e ainda assim ela mesma, sei que fiz meu papel. Aqui você não é um procedimento: é uma pessoa com expectativas, receios e um jeito único de ser bonita.',
-    tecnico: 'Sou especialista em Harmonização Orofacial com pós-graduação avançada em Anatomia Cirúrgica da Face e mais de 5 anos de dedicação exclusiva à estética e rejuvenescimento facial. Mantenho rigor técnico e científico constante em biossegurança, anatomia vascular e nos materiais de preenchimento reabsorvíveis de maior prestígio internacional.',
+    tecnico: 'Sou especialista em Harmonização Orofacial com mais de 5 anos de dedicação exclusiva à estética e rejuvenescimento facial. Mantenho rigor técnico e científico constante em biossegurança, anatomia vascular e nos materiais de preenchimento reabsorvíveis de maior prestígio internacional.',
     citacao: '“Harmonizar não é transformar você em outra pessoa — é devolver ao espelho a sua versão mais descansada, elegante e confiante.”',
     numeros: [
       { v: 5, sufixo: '+', rotulo: 'anos de experiência' },
