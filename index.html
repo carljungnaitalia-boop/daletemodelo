@@ -329,15 +329,15 @@
           <i style="--m:380"></i>
           <i style="--m:560"></i>
         </div>
+
+        <!-- Linha Dourada separando a animação da parte sobre a dra assim que terminam os botões -->
+        <div class="gt-gold-divider" aria-hidden="true">
+          <span class="gt-gold-divider-line"></span>
+          <span class="gt-gold-divider-gem">✦</span>
+          <span class="gt-gold-divider-line"></span>
+        </div>
       </div>
     </section>
-
-    <!-- Linha Dourada separando o fim da animação da gota e o início da seção Sobre a Dra. Dálete -->
-    <div class="gt-gold-divider" aria-hidden="true">
-      <span class="gt-gold-divider-line"></span>
-      <span class="gt-gold-divider-gem">✦</span>
-      <span class="gt-gold-divider-line"></span>
-    </div>
 
     <!-- ======================================================================
          5. Sobre a Doutora (Texto Emocional, Técnico e Contadores)
@@ -877,27 +877,37 @@
           const r = c2.getBoundingClientRect();
           const vh = window.innerHeight || 1;
           const totalTrack = Math.max(1, r.height - vh);
-          const p = still ? 1 : cl(-r.top / totalTrack);
+          const p = isMobile
+            ? (still ? 1 : cl((vh * 0.75 - r.top) / (vh * 0.6)))
+            : (still ? 1 : cl(-r.top / totalTrack));
           const a = cl(1 - r.top / vh);
 
-          if (r.top <= 0 && r.bottom >= vh) {
-            stg.style.position = 'fixed';
-            stg.style.top = '0px';
-            stg.style.bottom = 'auto';
-            stg.style.left = '0px';
-            stg.style.width = '100%';
-          } else if (r.bottom < vh) {
-            stg.style.position = 'absolute';
-            stg.style.top = 'auto';
-            stg.style.bottom = '0px';
-            stg.style.left = '0px';
-            stg.style.width = '100%';
-          } else {
+          if (isMobile) {
             stg.style.position = 'relative';
             stg.style.top = '0px';
             stg.style.bottom = 'auto';
             stg.style.left = '0px';
             stg.style.width = '100%';
+          } else {
+            if (r.top <= 0 && r.bottom >= vh) {
+              stg.style.position = 'fixed';
+              stg.style.top = '0px';
+              stg.style.bottom = 'auto';
+              stg.style.left = '0px';
+              stg.style.width = '100%';
+            } else if (r.bottom < vh) {
+              stg.style.position = 'absolute';
+              stg.style.top = 'auto';
+              stg.style.bottom = '0px';
+              stg.style.left = '0px';
+              stg.style.width = '100%';
+            } else {
+              stg.style.position = 'relative';
+              stg.style.top = '0px';
+              stg.style.bottom = 'auto';
+              stg.style.left = '0px';
+              stg.style.width = '100%';
+            }
           }
 
           const s = stg.getBoundingClientRect();

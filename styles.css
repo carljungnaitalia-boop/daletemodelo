@@ -3561,8 +3561,12 @@ input[type=range] {
 
 /* Linha dourada separando o fim da animação da gota e o início da seção Sobre */
 .gt-gold-divider {
-  position: relative;
+  grid-column: 1 / -1;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: var(--bg-2) !important;
   padding: 12px 20px 6px;
   display: flex;
@@ -3595,37 +3599,42 @@ input[type=range] {
 }
 
 @media (max-width: 820px) {
-  /* Sessão da Gota Mobile: palco fixado com trilha de scroll suave para ver a gota cair com clareza */
+  /* Sessão da Gota Mobile: compacto, sem espaço marrom vazio, transição imediata para a Dra. */
   .gt-sec {
-    height: 120vh !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 24px 0 0 !important;
     background-color: var(--bg-2) !important;
   }
   .gt-stg {
-    position: sticky !important;
-    top: 0px !important;
-    height: 100svh !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
     min-height: 0 !important;
     grid-template-columns: 1fr !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: center !important;
-    padding: 24px 18px !important;
+    padding: 0 16px !important;
     gap: 8px !important;
     text-align: center !important;
     background: var(--bg-2) !important;
     box-sizing: border-box !important;
   }
   .gt-stg .gt-tx {
-    margin: 0 auto;
+    margin: 0 auto !important;
     max-width: 100%;
     position: relative;
     z-index: 10;
+    order: 2;
   }
   .gt-orbit {
-    --O: min(66vw, 260px) !important;
-    order: -1;
-    margin-bottom: 4px;
+    --O: min(66vw, 250px) !important;
+    order: 1;
+    margin-bottom: 2px;
   }
   .gt-stg .gt-tx h2 {
     font-size: 24px !important;
@@ -3635,12 +3644,13 @@ input[type=range] {
   .gt-stg .gt-tx .gt-sub {
     font-size: 13.5px !important;
     line-height: 1.45;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     color: var(--text-on-brown-soft) !important;
   }
   .gt-stg .gt-tx .gt-btn-group {
     justify-content: center;
     gap: 10px;
+    margin-bottom: 0 !important;
     position: relative;
     z-index: 10;
   }
@@ -3650,12 +3660,25 @@ input[type=range] {
   }
   .gt-sec h2 { font-size: 26px; }
   .gt-gold-divider {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    order: 3;
+    width: 100%;
     background: var(--bg-2) !important;
-    padding: 14px 16px 14px;
+    padding: 16px 16px 4px !important;
+    margin: 0 !important;
     gap: 12px;
   }
   .sec-sobre {
-    padding-top: 14px !important;
+    padding-top: 8px !important;
+    padding-bottom: 60px !important;
+  }
+  .sobre-grid {
+    gap: 20px !important;
+  }
+  .sobre-photo-wrap {
+    margin: 0 auto !important;
   }
   .svc__pic {
     height: 290px !important;
